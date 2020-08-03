@@ -1,0 +1,1 @@
+const localCloud = "D:\drive_local";

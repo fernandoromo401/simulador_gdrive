@@ -1,0 +1,23 @@
+{
+    "name": "server",
+    "version": "1.1.0",
+    "description": "Backend",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
+    },
+    "author": "Fernando Romo",
+    "license": "MIT",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-fileupload": "^1.1.7-alpha.4",
+        "mime-types": "^2.1.27",
+        "os": "^0.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}
