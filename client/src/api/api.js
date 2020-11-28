@@ -3,6 +3,7 @@ import { baseURL } from '../config';
 
 class Api {
   constructor() {
+    
     this.api = axios.create({
       baseURL: baseURL,
     });

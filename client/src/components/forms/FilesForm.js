@@ -45,8 +45,9 @@ class FilesForm extends Component {
 
     this.setState({ uploading: false, alert: response, showAlert: true });
   }
-
+  
   render() {
+    
     if (this.state.uploading) {
       return <Loading title="Subiendo archivos..." text="Subiendo archivos" />;
     }
@@ -54,11 +55,19 @@ class FilesForm extends Component {
       <>
         {this.showAlert(this.state.alert)}
         <Form className="mb-3" onSubmit={(e) => this.onSubmit(e)}>
-          <Form.Label>Subir archivos</Form.Label>
-          <Form.File
+          <label className="btn btn-dark btn-block p-5" htmlFor="file">
+            Elegir archivo
+          </label>
+          <br></br>
+          <input 
+            id="file"
+            type="file"
             multiple
             className="mb-2"
-            onChange={(e) => this.onChange(e)}
+            style={{
+              display: 'none',
+            }}
+            onChange={(e) => this.onChange(e)}        
           />
           <Button size="block" variant="info" type="submit">
             Subir archivo

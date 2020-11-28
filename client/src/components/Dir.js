@@ -11,11 +11,14 @@ import api from '../api/api';
 import Loading from './Loading';
 
 class Dir extends Component {
+
+  contentGlobal;
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       dir: {},
+      value: ""
     };
   }
 
@@ -44,7 +47,6 @@ class Dir extends Component {
 
     const content = this.state.dir.content;
     const path = this.props.match.params.path;
-
     const directories = [
       <Dirent
         name="Hacia atras..."
@@ -57,7 +59,6 @@ class Dir extends Component {
     content.directories.forEach((dir) =>
       directories.push(<Dirent name={dir} isDirectory key={dir} path={path} />)
     );
-
     const files = content.files.map((file) => (
       <Dirent name={file} key={file} path={path} />
     ));
@@ -69,35 +70,42 @@ class Dir extends Component {
     const rowProps = { className: 'mx-auto mb-3' };
     const iconStyle = { color: '#FFF', size: 24, className: 'ml-2' };
     const path = this.props.match.params.path;
-
+    const pathName = path === undefined ? "Carpeta raiz" : "Carpeta :  " + path;
+    
     return (
       <Container>
+        <section className="card p-2 mb-4 bg-light text-dark">
+          <h1 className="text-center">MBCLOUD</h1>
+        </section>
         
-        <h1 className="text-center">Drive Local</h1>
-        <br></br>
         <Row {...rowProps}>
           <Col>
             <FormModal
-              btn="dark"
-              title="Subir Archivos"
+              btn="info"
               icon={<CloudArrowUpFill {...iconStyle} />}
             >
               <FilesForm uploadTo={path} reload={() => this.reload()} />
             </FormModal>
           </Col>
-        </Row>
-        <Row {...rowProps}>
           <Col>
             <FormModal
-              btn="dark"
-              title="Nueva Carpeta"
+              btn="warning"
               icon={<FolderPlus {...iconStyle} />}
             >
               <MkDirForm path={path} reload={() => this.reload()} />
             </FormModal>
           </Col>
+
+        </Row>
+        
+        <Row {...rowProps}>
+          
+          <Col className="mt-3">
+            <h4 className="text-center">{pathName.toUpperCase()}</h4>
+          </Col>
         </Row>
         <Row {...rowProps}>{this.fillEntries()}</Row>
+
       </Container>
     );
   }

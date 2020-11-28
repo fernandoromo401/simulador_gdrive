@@ -36,20 +36,20 @@ const DirCard = (props) => {
         <Container>
           <Row>
             <Col xs={props.isDirectory ? '' : 8} style={{ padding: 0 }}>
-              <Card.Text
+              <Card.Text title={props.name}
                 style={{
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
                   whiteSpace: 'nowrap',
                 }}
               >
-                {icon} |   {props.name}
+                {icon} &nbsp;&nbsp;&nbsp; {props.name.toUpperCase()}
               </Card.Text>
             </Col>
             {props.isDirectory ? (<></>) : (
               <Col
                 style={{ padding: 0, cursor: 'pointer' }}
-                className="d-flex flex-row-reverse"
+                className="d-flex flex-row-reverse mt-1"
                 onClick={() => saveAs(downloadLink, props.name)}
               >
                 <FileArrowDownFill {...iconStyle} />
